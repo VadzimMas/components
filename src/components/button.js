@@ -1,4 +1,3 @@
-
 import className from 'classnames'
 
 function Button({
@@ -31,12 +30,18 @@ function Button({
         })
 
     return (
-        <button {...rest} className={classes}>{children}</button>
+        <button {...rest} className={classes}>{children || 'button'}</button>
     )
 }
 
 Button.propTypes = {
     checkConflictingProps: ({ primary, secondary, success, warning, danger }) => {
+        // js trick
+        // Number(!!undefined) === 0 ; 
+        // Number(!undefined) === 1 ;  
+        // Number(undefined) === NaN ;
+        // Number(true) === 1 ;
+        // Number(false) === 0 ;
 
         const count =
             Number(!!primary) +
